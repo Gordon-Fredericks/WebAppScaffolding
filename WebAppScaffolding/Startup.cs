@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using WebAppScaffolding.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAppScaffolding
 {
@@ -21,6 +23,7 @@ namespace WebAppScaffolding
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<ThingyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ThingyContext")));
             services.AddMvc();
         }
 
